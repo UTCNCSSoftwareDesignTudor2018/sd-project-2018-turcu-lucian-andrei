@@ -13,7 +13,7 @@ public class UserService {
     UserRepository userRepository;
 
     public User login(String username, String password) {
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findUserById(username);
 
         if(password.equals(user.getPassword())) {
             return user;

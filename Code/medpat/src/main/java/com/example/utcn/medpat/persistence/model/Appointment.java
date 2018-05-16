@@ -5,6 +5,8 @@ import org.springframework.data.repository.cdi.Eager;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "appointment")
 public class Appointment {
 
     @Id
@@ -13,17 +15,17 @@ public class Appointment {
     private Long id;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private Long patientId;
+    private Medic medic;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private Long doctorId;
+    private Patient patient;
 
     private String location;
     private String date;
 
-    public Appointment(Long patientId, Long doctorId, String location) {
-        this.patientId = patientId;
-        this.doctorId = doctorId;
+    public Appointment(Patient patient, Medic medic, String location) {
+        this.patient = patient;
+        this.medic = medic;
         this.location = location;
         this.date = "";
     }
@@ -32,20 +34,20 @@ public class Appointment {
         return id;
     }
 
-    public Long getPatientId() {
-        return patientId;
+    public Medic getMedic() {
+        return medic;
     }
 
-    public void setPatientId(Long patientId) {
-        this.patientId = patientId;
+    public void setMedic(Medic medic) {
+        this.medic = medic;
     }
 
-    public Long getDoctorId() {
-        return doctorId;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setDoctorId(Long doctorId) {
-        this.doctorId = doctorId;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     public String getLocation() {

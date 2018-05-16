@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="patient")
-public class Patient extends User {
+public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,9 +13,7 @@ public class Patient extends User {
     private String name;
     private String address;
 
-    public Patient(User user, String name, String address) {
-        this.setUsername(user.getUsername());
-        this.setPassword(user.getPassword());
+    public Patient(String name, String address) {
         this.name = name;
         this.address = address;
     }

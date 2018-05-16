@@ -13,8 +13,8 @@ public class ArticleService {
     @Inject
     private ArticleRepository articleRepository;
 
-    public List<Article> getArticleByAuthorId(Long id) {
-        return articleRepository.findArticleByAuthorId(id);
+    public List<Article> getArticleByMedicId(Long id) {
+        return articleRepository.findArticleByAuthor(id);
     }
 
     public List<Article> getArticles() {

@@ -10,14 +10,19 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id", nullable = false)
     private Long id;
-    private Long fromId;
-    private Long toId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User from;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User to;
+
     private String date;
     private String message;
 
-    public Message(Long fromId, Long toId, String message) {
-        this.fromId = fromId;
-        this.toId = toId;
+    public Message(User from, User to, String message) {
+        from = from;
+        to = to;
         this.message = message;
         this.date = "";
     }
@@ -29,20 +34,20 @@ public class Message {
         return id;
     }
 
-    public Long getFromId() {
-        return fromId;
+    public User getFrom() {
+        return from;
     }
 
-    public void setFromId(Long fromId) {
-        this.fromId = fromId;
+    public void setFrom(User from) {
+        this.from = from;
     }
 
-    public Long getToId() {
-        return toId;
+    public User getTo() {
+        return to;
     }
 
-    public void setToId(Long toId) {
-        this.toId = toId;
+    public void setTo(User to) {
+        this.to = to;
     }
 
     public String getMessage() {

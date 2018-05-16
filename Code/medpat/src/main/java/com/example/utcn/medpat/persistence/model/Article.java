@@ -12,14 +12,14 @@ public class Article {
     private Long id;
 
     @ManyToOne
-    private Long authorId;
+    private Medic author;
 
     private String title;
     private String body;
     private Date creationDate;
 
-    public Article(Long authorId, String title, String body, Date creationDate) {
-        this.authorId = authorId;
+    public Article(Medic author, String title, String body, Date creationDate) {
+        this.author = author;
         this.title = title;
         this.body = body;
         this.creationDate = creationDate;
@@ -29,12 +29,12 @@ public class Article {
         return id;
     }
 
-    public Long getAuthorId() {
-        return authorId;
+    public Medic getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
+    public void setAuthorId(Medic author) {
+        this.author = author;
     }
 
     public String getTitle() {

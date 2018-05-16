@@ -14,19 +14,19 @@ public class Prescription {
     private Long id;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private Long medicId;
+    private Medic medic;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private Long patientId;
+    private Patient patient;
 
     @OneToMany
     private List<Medication> medications;
 
     private String creationDate;
 
-    public Prescription(Long medicId, Long patientId) {
-        this.medicId = medicId;
-        this.patientId = patientId;
+    public Prescription(Medic medic, Patient patient) {
+        this.medic = medic;
+        this.patient = patient;
         this.creationDate = "";
         this.medications = new ArrayList<>();
     }
@@ -37,28 +37,20 @@ public class Prescription {
         return id;
     }
 
-    public Long getMedicId() {
-        return medicId;
+    public Medic getMedic() {
+        return medic;
     }
 
-    public void setMedicId(Long medicId) {
-        this.medicId = medicId;
+    public void setMedic(Medic medic) {
+        this.medic = medic;
     }
 
-    public Long getPatientId() {
-        return patientId;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setPatientId(Long patientId) {
-        this.patientId = patientId;
-    }
-
-    public String getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(String creationDate) {
-        this.creationDate = creationDate;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     public List<Medication> getMedications() {
@@ -69,11 +61,11 @@ public class Prescription {
         this.medications = medications;
     }
 
-    public void addMedication(Medication medication) {
-        medications.add(medication);
+    public String getCreationDate() {
+        return creationDate;
     }
 
-    public void removeMedication(Medication medication) {
-        medications.remove(medication);
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
     }
 }

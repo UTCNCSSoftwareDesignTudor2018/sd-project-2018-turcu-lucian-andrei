@@ -19,7 +19,7 @@ public class AppointmentService {
             new java.text.SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
 
     public boolean makeAppointment(Appointment appointment) {
-        List<Appointment> appointments = appointmentRepository.findAllByDoctorId(appointment.getDoctorId());
+        List<Appointment> appointments = appointmentRepository.findAllByMedicId(appointment.getMedic().getId());
         Boolean free = true;
 
         try {
@@ -45,7 +45,7 @@ public class AppointmentService {
 
     public List<Appointment> getAppointments(boolean isDoctor, Long id) {
         if(isDoctor) {
-            return appointmentRepository.findAllByDoctorId(id);
+            return appointmentRepository.findAllByMedicId(id);
         } else {
             return appointmentRepository.findAllByPatientId(id);
         }

@@ -7,7 +7,7 @@ enum Specialization {
 }
 @Entity
 @Table(name="medic")
-public class Medic extends User{
+public class Medic {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,9 +17,7 @@ public class Medic extends User{
     private String workAddress;
     private Specialization specialization;
 
-    public Medic(User user, String name, String workAddress, Specialization specialization) {
-        this.setUsername(user.getUsername());
-        this.setPassword(user.getPassword());
+    public Medic(String name, String workAddress, Specialization specialization) {
         this.name = name;
         this.workAddress = workAddress;
         this.specialization = specialization;

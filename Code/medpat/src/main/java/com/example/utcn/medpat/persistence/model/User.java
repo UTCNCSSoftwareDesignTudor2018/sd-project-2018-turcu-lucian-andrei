@@ -9,15 +9,17 @@ enum Type {
 @Entity
 @Table(name="user")
 public class User {
+
     @Id
-    @Column(name="username", nullable=false)
-    private String username;
+    @Column(name="id", nullable=false)
+    private String id;
+
     private String password;
     private Type userType;
     private Long personId;
 
     public User(String username, String password, Type userType, Long personId) {
-        this.username = username;
+        this.id = username;
         this.password = password;
         this.userType = userType;
         this.personId = personId;
@@ -26,11 +28,11 @@ public class User {
     public User() {};
 
     public String getUsername() {
-        return username;
+        return id;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.id = username;
     }
 
     public String getPassword() {
