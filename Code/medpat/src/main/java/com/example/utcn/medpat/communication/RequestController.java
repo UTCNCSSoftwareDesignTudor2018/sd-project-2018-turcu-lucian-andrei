@@ -29,6 +29,12 @@ public class RequestController {
     @Inject
     private PrescriptionService prescriptionService;
 
+    @Inject
+    private PatientService patientService;
+
+    @Inject
+    private MedicService medicService;
+
     /**
      * Login methods
      */
@@ -44,7 +50,29 @@ public class RequestController {
 
         return null;
     }
+    /**
+     * User methods
+     */
+    @RequestMapping(value="/getPatients", method = RequestMethod.GET)
+    public List<Patient> getPatients() {
+        return patientService.getPatients();
+    }
 
+    @RequestMapping(value="/getPatient", method = RequestMethod.GET)
+    public Patient getPatient(@RequestParam Long patientId) {
+        return patientService.getPatient(patientId);
+    }
+
+
+    @RequestMapping(value="/getMedics", method = RequestMethod.GET)
+    public List<Medic> getMedics() {
+        return medicService.getMedics();
+    }
+
+    @RequestMapping(value="/getMedic", method = RequestMethod.GET)
+    public Medic getMedic(@RequestParam Long medicId) {
+        return medicService.getMedic(medicId);
+    }
 
     /**
      * Messaging methods
@@ -141,7 +169,7 @@ public class RequestController {
             prescriptionService.prescribe(prescriptionObj);
         }
     }
-    
+
 }
 
 class LoginCredentials {
