@@ -43,4 +43,12 @@ public class AppointmentService {
         return free;
     }
 
+    public List<Appointment> getAppointments(boolean isDoctor, Long id) {
+        if(isDoctor) {
+            return appointmentRepository.findAllByDoctorId(id);
+        } else {
+            return appointmentRepository.findAllByPatientId(id);
+        }
+    }
+
 }

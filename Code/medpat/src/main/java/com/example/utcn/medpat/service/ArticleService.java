@@ -21,7 +21,7 @@ public class ArticleService {
         return articleRepository.findAll();
     }
 
-    public Article findArticleByTitle(String title) {
+    public Article getArticleByTitle(String title) {
         return articleRepository.findArticleByTitle(title);
     }
 

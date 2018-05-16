@@ -29,6 +29,9 @@ public class RequestController {
     @Inject
     private PrescriptionService prescriptionService;
 
+    /**
+     * Login methods
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public User login(@RequestBody String loginCredentials) {
         Gson gson = new Gson();
@@ -42,6 +45,10 @@ public class RequestController {
         return null;
     }
 
+
+    /**
+     * Messaging methods
+     */
     @RequestMapping(value="/getInbox", method = RequestMethod.GET)
     public List<Message> getInbox(@RequestParam Long toId) {
         if(toId != null)
@@ -69,6 +76,9 @@ public class RequestController {
         }
     }
 
+    /**
+     * Appointment methods
+     */
     @RequestMapping(value="/makeAppointment", method = RequestMethod.POST)
     public boolean makeAppointment(@RequestBody String appointment) {
         Gson gson = new Gson();
@@ -80,6 +90,20 @@ public class RequestController {
         return false;
     }
 
+    @RequestMapping(value="/getDoctorAppointments", method = RequestMethod.GET)
+    public List<Appointment> getDoctorAppointments(@RequestParam Long doctorId) {
+        return appointmentService.getAppointments(true, doctorId);
+    }
+
+    @RequestMapping(value="/getPatientAppointments", method = RequestMethod.GET)
+    public List<Appointment> getPatientAppointments(@RequestParam Long patientId) {
+        return appointmentService.getAppointments(false, patientId);
+    }
+
+
+    /**
+     * Article methods
+     */
     @RequestMapping(value="/postArticle", method = RequestMethod.POST)
     public void postArticle(@RequestBody String article) {
         Gson gson = new Gson();
@@ -95,6 +119,29 @@ public class RequestController {
         return articleService.getArticles();
     }
 
+    @RequestMapping(value="/getArticle", method = RequestMethod.GET)
+    public Article getArticle(@RequestParam String title) {
+        return articleService.getArticleByTitle(title);
+    }
+
+    /**
+     * Prescription methods
+     */
+    @RequestMapping(value="/getPrescriptions", method = RequestMethod.GET)
+    public List<Prescription> getPrescriptions(@RequestParam Long pacientId) {
+        return prescriptionService.getPrescriptions(pacientId);
+    }
+
+    @RequestMapping(value="/prescribe", method = RequestMethod.POST)
+    public void prescribe(@RequestBody String prescription) {
+        Gson gson = new Gson();
+        Prescription prescriptionObj = gson.fromJson(prescription, Prescription.class);
+
+        if(prescriptionObj != null) {
+            prescriptionService.prescribe(prescriptionObj);
+        }
+    }
+    
 }
 
 class LoginCredentials {
