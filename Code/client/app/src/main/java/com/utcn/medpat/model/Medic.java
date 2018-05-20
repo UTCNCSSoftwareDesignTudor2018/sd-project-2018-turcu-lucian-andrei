@@ -1,14 +1,10 @@
-package com.example.utcn.medpat.persistence.model;
+package com.utcn.medpat.model;
 
-import javax.persistence.*;
+/**
+ * Created by Lucian on 5/20/2018.
+ */
 
-@Entity
-@Table(name="medic")
 public class Medic {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id", nullable = false)
     private Long id;
     private String name;
     private String workAddress;
@@ -50,4 +46,5 @@ public class Medic {
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
     }
+
 }

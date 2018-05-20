@@ -1,13 +1,10 @@
-package com.example.utcn.medpat.persistence.model;
+package com.utcn.medpat.model;
 
-import javax.persistence.*;
+/**
+ * Created by Lucian on 5/20/2018.
+ */
 
-@Entity
-@Table(name="user")
 public class User {
-
-    @Id
-    @Column(name="id", nullable=false)
     private String id;
 
     private String password;

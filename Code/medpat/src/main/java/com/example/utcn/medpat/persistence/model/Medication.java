@@ -20,6 +20,9 @@ public class Medication {
         this.description = description;
     }
 
+    public Medication() {
+    }
+
     public Long getId() {
         return id;
     }

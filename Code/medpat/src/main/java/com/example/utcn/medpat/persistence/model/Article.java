@@ -25,6 +25,9 @@ public class Article {
         this.creationDate = creationDate;
     }
 
+    public Article(Medic author) {
+    }
+
     public Long getId() {
         return id;
     }
