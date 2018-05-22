@@ -16,9 +16,9 @@ public class Article {
 
     private String title;
     private String body;
-    private Date creationDate;
+    private String creationDate;
 
-    public Article(Medic author, String title, String body, Date creationDate) {
+    public Article(Medic author, String title, String body, String creationDate) {
         this.author = author;
         this.title = title;
         this.body = body;
@@ -56,11 +56,11 @@ public class Article {
         this.body = body;
     }
 
-    public Date getCreationDate() {
+    public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 }

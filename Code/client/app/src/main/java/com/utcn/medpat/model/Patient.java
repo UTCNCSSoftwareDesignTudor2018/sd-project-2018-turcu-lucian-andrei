@@ -14,6 +14,12 @@ public class Patient {
         this.address = address;
     }
 
+    private Patient(final Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.address = builder.address;
+    }
+
     public Patient() {};
 
     public String getName() {
@@ -30,5 +36,30 @@ public class Patient {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    static class Builder {
+        private Long id;
+        private String name;
+        private String address;
+
+        public Builder setId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setAddress(String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Patient create() {
+            return new Patient(this);
+        }
     }
 }

@@ -16,6 +16,13 @@ public class Medic {
         this.specialization = specialization;
     }
 
+    public Medic(final Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.workAddress = builder.workAddress;
+        this.specialization = builder.specialization;
+    }
+
     public Medic() {
     }
 
@@ -45,6 +52,33 @@ public class Medic {
 
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
+    }
+
+    static class Builder {
+        private Long id;
+        private String name;
+        private String workAddress;
+        private String specialization;
+
+        public Builder setId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setWorkAddress(String workAddress) {
+            this.workAddress = workAddress;
+            return this;
+        }
+
+        Builder setSpecialization(String specialization) {
+            this.specialization = specialization;
+            return this;
+        }
     }
 
 }

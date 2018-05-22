@@ -1,5 +1,6 @@
 package com.example.utcn.medpat.communication;
 
+import com.example.utcn.medpat.communication.dto.LoginCredentials;
 import com.example.utcn.medpat.persistence.model.*;
 import com.example.utcn.medpat.service.*;
 import com.google.gson.Gson;
@@ -172,28 +173,3 @@ public class RequestController {
 
 }
 
-class LoginCredentials {
-    private String username;
-    private String password;
-
-    public LoginCredentials(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-}

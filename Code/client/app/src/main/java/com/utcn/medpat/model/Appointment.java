@@ -1,25 +1,14 @@
-package com.example.utcn.medpat.persistence.model;
+package com.utcn.medpat.model;
 
-import org.springframework.data.repository.cdi.Eager;
+/**
+ * Created by Lucian on 5/21/2018.
+ */
 
-import javax.persistence.*;
-import java.util.Date;
-
-@Entity
-@Table(name = "appointment")
 public class Appointment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id", nullable = false)
     private Long id;
-
-    @OneToOne(fetch = FetchType.EAGER)
     private Medic medic;
-
-    @OneToOne(fetch = FetchType.EAGER)
     private Patient patient;
-
     private String location;
     private String date;
 
@@ -31,13 +20,9 @@ public class Appointment {
         this.date = "";
     }
 
-    public Appointment(Patient patient, Medic medic, String location) {
-        this.patient = patient;
-        this.medic = medic;
-        this.location = location;
-        this.date = "";
-    }
+    public Appointment(final Builder builder) {
 
+    }
     public Appointment() {
     }
 
@@ -75,5 +60,37 @@ public class Appointment {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    static class Builder {
+        private Long id;
+        private Patient patient;
+        private Medic medic;
+        private String location;
+
+        public Builder setId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder setPatient(Patient patient) {
+            this.patient = patient;
+            return this;
+        }
+
+        public Builder setMedic(Medic medic) {
+            this.medic = medic;
+            return this;
+        }
+
+        public Builder setLocation(String location) {
+            this.location = location;
+            return this;
+        }
+
+        public Appointment createAppointment() {
+            return new Appointment(this);
+        }
+
     }
 }

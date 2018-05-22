@@ -20,9 +20,17 @@ public class Message {
     private String date;
     private String message;
 
+    public Message(Long id, User from, User to, String date, String message) {
+        this.id = id;
+        this.from = from;
+        this.to = to;
+        this.message = message;
+        this.date = date;
+    }
+
     public Message(User from, User to, String message) {
-        from = from;
-        to = to;
+        this.from = from;
+        this.to = to;
         this.message = message;
         this.date = "";
     }
