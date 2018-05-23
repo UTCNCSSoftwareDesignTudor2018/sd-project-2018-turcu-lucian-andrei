@@ -18,7 +18,21 @@ public class Patient {
         this.address = address;
     }
 
+    public Patient(Long id, String name, String address) {
+        this.name = name;
+        this.address = address;
+        this.id = id;
+    }
+
     public Patient() {};
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

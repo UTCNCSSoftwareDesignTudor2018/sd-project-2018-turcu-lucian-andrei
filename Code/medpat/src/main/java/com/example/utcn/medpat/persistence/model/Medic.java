@@ -23,6 +23,10 @@ public class Medic {
     public Medic() {
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return this.id;
     }
@@ -50,4 +54,5 @@ public class Medic {
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
     }
+
 }

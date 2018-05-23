@@ -17,6 +17,7 @@ import com.utcn.medpat.dataAccess.service.PrescriptionService;
 import com.utcn.medpat.model.Medic;
 import com.utcn.medpat.model.Patient;
 import com.utcn.medpat.model.Prescription;
+import com.utcn.medpat.presentation.activity.MainActivity;
 import com.utcn.medpat.presentation.adapter.PrescriptionMedicAdapter;
 import com.utcn.medpat.presentation.adapter.PrescriptionPatientAdapter;
 
@@ -64,7 +65,7 @@ public class PrescriptionFragment extends Fragment{
         mProgressDialog.setMessage("Loading...");
         mProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().
-                baseUrl("http://192.168.100.5:8080").
+                baseUrl(MainActivity.SERVER_URL).
                 addConverterFactory(GsonConverterFactory.create()).
                 build();
 

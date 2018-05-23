@@ -1,10 +1,12 @@
 package com.utcn.medpat.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Lucian on 5/20/2018.
  */
 
-public class Patient {
+public class Patient implements Serializable{
     private Long id;
     private String name;
     private String address;

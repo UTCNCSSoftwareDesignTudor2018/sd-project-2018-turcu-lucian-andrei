@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class MessageFragment extends Fragment {
     private User currentUser;
     private ListView listView;
     private List<Message> messageList;
+    private SwipeRefreshLayout swipeLayout;
 
     public void setUser(User currentUser) {
         this.currentUser = currentUser;
@@ -50,9 +52,10 @@ public class MessageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.messages_fragment,container,false);
         listView = view.findViewById(R.id.message_list);
-        updateList(listView);
-        //btnTest.setOnClickListener((v)-> Toast.makeText(getActivity(), "Testing messaging", Toast.LENGTH_SHORT).show());
+        swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
+        swipeLayout.setOnRefreshListener(() -> updateList(view.findViewById(R.id.message_list)));
 
+        updateList(listView);
         return view;
     }
 
@@ -62,7 +65,7 @@ public class MessageFragment extends Fragment {
         mProgressDialog.setMessage("Loading...");
         mProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().
-                baseUrl("http://192.168.100.5:8080").
+                baseUrl(MainActivity.SERVER_URL).
                 addConverterFactory(GsonConverterFactory.create()).
                 build();
 
@@ -80,6 +83,7 @@ public class MessageFragment extends Fragment {
                 Log.i("MESSAGES", "Size: "+messageList.size());
 
                 listView.setAdapter(new MessageAdapter(listView.getContext(), listView.getId(), messageList));
+                swipeLayout.setRefreshing(false);
             }
 
             @Override

@@ -1,10 +1,12 @@
 package com.utcn.medpat.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Lucian on 5/20/2018.
  */
 
-public class Medic {
+public class Medic implements Serializable{
     private Long id;
     private String name;
     private String workAddress;
@@ -52,6 +54,11 @@ public class Medic {
 
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     static class Builder {

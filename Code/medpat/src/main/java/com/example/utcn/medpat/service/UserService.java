@@ -5,6 +5,7 @@ import com.example.utcn.medpat.persistence.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -24,5 +25,9 @@ public class UserService {
 
     public User getUser(String username) {
         return userRepository.findUserById(username);
+    }
+
+    public List<User> getUsers() {
+        return userRepository.findAll();
     }
 }

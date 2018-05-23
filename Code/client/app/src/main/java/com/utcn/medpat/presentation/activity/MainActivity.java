@@ -2,9 +2,11 @@ package com.utcn.medpat.presentation.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -43,11 +45,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static final String SERVER_URL = "http://192.168.100.5:8080";
     private static final String TAG = "MainActivity";
 
     private SectionsPageAdapter mSectionsPageAdapter;
-
     private ViewPager mViewPager;
 
     private User currentUser;
@@ -62,13 +63,13 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         currentUser = (User) intent.getSerializableExtra("User");
-        setTypeClass(currentUser.getUserType());
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-        setupViewPager(mViewPager);
+        setTypeClass(currentUser.getUserType());
+        //setupViewPager(mViewPager);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -79,21 +80,21 @@ public class MainActivity extends AppCompatActivity {
 
         AppointmentFragment aFrag = new AppointmentFragment();
         aFrag.setCurrentPerson(currentMedic, currentPatient);
-        adapter.addFragment(aFrag, "Appointment");
+        adapter.addFragment(aFrag, "Appointments");
 
         MessageFragment mFrag = new MessageFragment();
         mFrag.setUser(currentUser);
-        adapter.addFragment(mFrag, "Message");
+        adapter.addFragment(mFrag, "Messages");
 
         PrescriptionFragment pFrag = new PrescriptionFragment();
         pFrag.setCurrentPerson(currentMedic, currentPatient);
-        adapter.addFragment(pFrag, "Prescription");
+        adapter.addFragment(pFrag, "Prescriptions");
         viewPager.setAdapter(adapter);
     }
 
     private void setTypeClass(String usertype) {
         Retrofit retrofit = new Retrofit.Builder().
-                baseUrl("http://192.168.100.5:8080").
+                baseUrl(SERVER_URL).
                 addConverterFactory(GsonConverterFactory.create()).
                 build();
 
@@ -101,11 +102,13 @@ public class MainActivity extends AppCompatActivity {
 
         if("doctor".equals(usertype)) {
             Call<Medic> medicCall = personService.getMedic(currentUser.getPersonId());
+            //currentMedic = medicCall.execute().body();
             medicCall.enqueue(new Callback<Medic>(){
                 @Override
                 public void onResponse(Call<Medic> call, Response<Medic> response) {
 
                     currentMedic = response.body();
+                    setupViewPager(mViewPager);
                     Log.i("PERSON", currentMedic.getName()+", "+currentUser.getUserType());
                 }
 
@@ -119,8 +122,8 @@ public class MainActivity extends AppCompatActivity {
             patientCall.enqueue(new Callback<Patient>(){
                 @Override
                 public void onResponse(Call<Patient> call, Response<Patient> response) {
-
                     currentPatient = response.body();
+                    setupViewPager(mViewPager);
                     Log.i("PERSON", currentPatient.getName()+", "+currentUser.getUserType());
                 }
 
@@ -133,4 +136,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void addAppointment(View view) {
+        Intent intent = new Intent(view.getContext(), AddAppointmentActivity.class);
+        intent.putExtra("User", currentUser);
+        if(currentMedic != null)
+            intent.putExtra("Type", currentMedic);
+        else if(currentPatient != null)
+            intent.putExtra("Type", currentPatient);
+        startActivity(intent);
+    }
+
+    public void sendMessage(View view) {
+        Intent intent = new Intent(view.getContext(), SendMessageActivity.class);
+        intent.putExtra("User", currentUser);
+        startActivity(intent);
+    }
 }

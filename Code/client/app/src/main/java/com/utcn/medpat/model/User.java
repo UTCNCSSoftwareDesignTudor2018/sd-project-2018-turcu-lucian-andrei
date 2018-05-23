@@ -60,6 +60,10 @@ public class User implements Serializable {
         this.userType = userType;
     }
 
+    public String toString() {
+        return this.getUsername();
+    }
+
     public static class Builder {
         private String id;
         private String password;

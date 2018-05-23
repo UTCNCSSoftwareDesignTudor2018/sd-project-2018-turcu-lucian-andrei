@@ -22,6 +22,14 @@
         <activity
             android:name=".presentation.activity.MainActivity"
             android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".presentation.activity.AddAppointmentActivity"
+            android:label="@string/title_activity_add_appointment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".presentation.activity.SendMessageActivity"
+            android:label="@string/title_activity_send_message"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

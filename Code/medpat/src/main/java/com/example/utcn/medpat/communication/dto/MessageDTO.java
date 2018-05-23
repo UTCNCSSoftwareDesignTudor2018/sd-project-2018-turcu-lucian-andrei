@@ -1,9 +1,9 @@
 package com.example.utcn.medpat.communication.dto;
 
 public class MessageDTO {
-    String from;
-    String to;
-    String message;
+    private String from;
+    private String to;
+    private String message;
 
     public String getFrom() {
         return from;

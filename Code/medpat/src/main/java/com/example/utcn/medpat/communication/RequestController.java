@@ -1,7 +1,9 @@
 package com.example.utcn.medpat.communication;
 
+import com.example.utcn.medpat.communication.dto.AppointmentDTO;
 import com.example.utcn.medpat.communication.dto.LoginCredentials;
 import com.example.utcn.medpat.communication.dto.MessageDTO;
+import com.example.utcn.medpat.communication.dto.PrescriptionDTO;
 import com.example.utcn.medpat.persistence.model.*;
 import com.example.utcn.medpat.service.*;
 import com.google.gson.Gson;
@@ -55,6 +57,12 @@ public class RequestController {
     /**
      * User methods
      */
+
+    @RequestMapping(value="/getUsers", method = RequestMethod.GET)
+    public List<User> getUsers() {
+        return userService.getUsers();
+    }
+
     @RequestMapping(value="/getPatients", method = RequestMethod.GET)
     public List<Patient> getPatients() {
         return patientService.getPatients();
@@ -64,7 +72,6 @@ public class RequestController {
     public Patient getPatient(@RequestParam Long patientId) {
         return patientService.getPatient(patientId);
     }
-
 
     @RequestMapping(value="/getMedics", method = RequestMethod.GET)
     public List<Medic> getMedics() {
@@ -112,7 +119,7 @@ public class RequestController {
     @RequestMapping(value="/makeAppointment", method = RequestMethod.POST)
     public boolean makeAppointment(@RequestBody String appointment) {
         Gson gson = new Gson();
-        Appointment appointmentObj = gson.fromJson(appointment, Appointment.class);
+        AppointmentDTO appointmentObj = gson.fromJson(appointment, AppointmentDTO.class);
 
         if(appointmentObj != null) {
             return appointmentService.makeAppointment(appointmentObj);
@@ -170,7 +177,7 @@ public class RequestController {
     @RequestMapping(value="/prescribe", method = RequestMethod.POST)
     public void prescribe(@RequestBody String prescription) {
         Gson gson = new Gson();
-        Prescription prescriptionObj = gson.fromJson(prescription, Prescription.class);
+        PrescriptionDTO prescriptionObj = gson.fromJson(prescription, PrescriptionDTO.class);
 
         if(prescriptionObj != null) {
             prescriptionService.prescribe(prescriptionObj);

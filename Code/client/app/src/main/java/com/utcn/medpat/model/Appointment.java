@@ -21,8 +21,13 @@ public class Appointment {
     }
 
     public Appointment(final Builder builder) {
-
+        this.id = builder.id;
+        this.patient = builder.patient;
+        this.medic = builder.medic;
+        this.location = builder.location;
+        this.date = builder.date;
     }
+
     public Appointment() {
     }
 
@@ -62,11 +67,12 @@ public class Appointment {
         this.date = date;
     }
 
-    static class Builder {
+    public static class Builder {
         private Long id;
         private Patient patient;
         private Medic medic;
         private String location;
+        private String date;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -85,6 +91,10 @@ public class Appointment {
 
         public Builder setLocation(String location) {
             this.location = location;
+            return this;
+        }
+        public Builder setDate(String date) {
+            this.date = date;
             return this;
         }
 

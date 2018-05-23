@@ -1,6 +1,7 @@
 package com.utcn.medpat.presentation.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +24,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText username;
     private EditText password;
-
     private User currentUser;
     private LoginService loginService;
 
@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //Retrofit initialization
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("http://192.168.100.5:8080")
+                .baseUrl(MainActivity.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create());
         Retrofit retrofit = builder.build();
 

@@ -55,13 +55,14 @@
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="379dp"
-        android:layout_height="51dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="267dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="216dp"
         android:onClick="doLogin"
         android:text="@string/action_sign_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_default="percent" />
 
