@@ -22,11 +22,14 @@ public class Prescription {
     @OneToMany
     private List<Medication> medications;
 
+    private String disease;
+
     private String creationDate;
 
-    public Prescription(Medic medic, Patient patient) {
+    public Prescription(Medic medic, Patient patient, String disease) {
         this.medic = medic;
         this.patient = patient;
+        this.disease = disease;
         this.creationDate = "";
         this.medications = new ArrayList<>();
     }
@@ -59,6 +62,14 @@ public class Prescription {
 
     public void setMedications(List<Medication> medications) {
         this.medications = medications;
+    }
+
+    public String getDisease() {
+        return disease;
+    }
+
+    public void setDisease(String disease) {
+        this.disease = disease;
     }
 
     public String getCreationDate() {

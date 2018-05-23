@@ -1,6 +1,7 @@
 package com.example.utcn.medpat.communication;
 
 import com.example.utcn.medpat.communication.dto.LoginCredentials;
+import com.example.utcn.medpat.communication.dto.MessageDTO;
 import com.example.utcn.medpat.persistence.model.*;
 import com.example.utcn.medpat.service.*;
 import com.google.gson.Gson;
@@ -79,7 +80,7 @@ public class RequestController {
      * Messaging methods
      */
     @RequestMapping(value="/getInbox", method = RequestMethod.GET)
-    public List<Message> getInbox(@RequestParam Long toId) {
+    public List<Message> getInbox(@RequestParam String toId) {
         if(toId != null)
             return messageService.getMessages("to", toId);
         else
@@ -87,7 +88,7 @@ public class RequestController {
     }
 
     @RequestMapping(value="/getSent", method = RequestMethod.GET)
-    public List<Message> getSent(@RequestParam Long fromId) {
+    public List<Message> getSent(@RequestParam String fromId) {
         if(fromId != null)
             return messageService.getMessages("from", fromId);
         else
@@ -97,7 +98,7 @@ public class RequestController {
     @RequestMapping(value="/sendMessage", method = RequestMethod.POST)
     public void sendMessage(@RequestBody String message) {
         Gson gson = new Gson();
-        Message messageObj = gson.fromJson(message, Message.class);
+        MessageDTO messageObj = gson.fromJson(message, MessageDTO.class);
 
         if(messageObj != null) {
             messageService.sendMessage(messageObj);
@@ -156,9 +157,14 @@ public class RequestController {
     /**
      * Prescription methods
      */
-    @RequestMapping(value="/getPrescriptions", method = RequestMethod.GET)
-    public List<Prescription> getPrescriptions(@RequestParam Long pacientId) {
-        return prescriptionService.getPrescriptions(pacientId);
+    @RequestMapping(value="/getPatientPrescriptions", method = RequestMethod.GET)
+    public List<Prescription> getPatientPrescriptions(@RequestParam Long pacientId) {
+        return prescriptionService.getPatientPrescriptions(pacientId);
+    }
+
+    @RequestMapping(value="/getDoctorPrescriptions", method = RequestMethod.GET)
+    public List<Prescription> getDoctorPrescriptions(@RequestParam Long doctorId) {
+        return prescriptionService.getDoctorPrescriptions(doctorId);
     }
 
     @RequestMapping(value="/prescribe", method = RequestMethod.POST)

@@ -38,6 +38,14 @@ public class Patient {
         this.address = address;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     static class Builder {
         private Long id;
         private String name;

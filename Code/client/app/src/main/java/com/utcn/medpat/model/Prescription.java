@@ -14,10 +14,12 @@ public class Prescription {
     private Patient patient;
     private List<Medication> medications;
     private String creationDate;
+    private String disease;
 
-    public Prescription(Medic medic, Patient patient) {
+    public Prescription(Medic medic, Patient patient, String disease) {
         this.medic = medic;
         this.patient = patient;
+        this.disease = disease;
         this.creationDate = "";
         this.medications = new ArrayList<>();
     }
@@ -36,6 +38,7 @@ public class Prescription {
         this.patient = builder.patient;
         this.creationDate = builder.creationDate;
         this.medications = builder.medications;
+        this.disease = builder.disease;
     }
 
     public Prescription() {
@@ -77,12 +80,21 @@ public class Prescription {
         this.creationDate = creationDate;
     }
 
+    public String getDisease() {
+        return disease;
+    }
+
+    public void setDisease(String disease) {
+        this.disease = disease;
+    }
+
     static class Builder {
         private Long id;
         private Medic medic;
         private Patient patient;
         private List<Medication> medications;
         private String creationDate;
+        private String disease;
 
         public Builder setMedic(Medic medic) {
             this.medic = medic;
@@ -109,6 +121,10 @@ public class Prescription {
             return this;
         }
 
+        public Builder setDisease(String disease) {
+            this.disease = disease;
+            return this;
+        }
 
         public Prescription createPrescription() {
             return new Prescription(this);

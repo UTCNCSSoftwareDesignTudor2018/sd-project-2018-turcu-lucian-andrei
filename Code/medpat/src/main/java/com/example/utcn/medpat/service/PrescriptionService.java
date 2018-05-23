@@ -13,11 +13,15 @@ public class PrescriptionService {
     @Inject
     private PrescriptionRepository prescriptionRepository;
 
-    public List<Prescription> getPrescriptions(Long patientId) {
+    public List<Prescription> getPatientPrescriptions(Long patientId) {
         return prescriptionRepository.findAllByPatientId(patientId);
     }
 
+    public List<Prescription> getDoctorPrescriptions(Long doctorId) {
+        return prescriptionRepository.findAllByMedicId(doctorId);
+    }
     public void prescribe(Prescription prescription) {
+
         prescriptionRepository.save(prescription);
     }
 }

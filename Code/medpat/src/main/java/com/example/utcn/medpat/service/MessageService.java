@@ -1,5 +1,6 @@
 package com.example.utcn.medpat.service;
 
+import com.example.utcn.medpat.communication.dto.MessageDTO;
 import com.example.utcn.medpat.persistence.model.Message;
 import com.example.utcn.medpat.persistence.repository.MessageRepository;
 import org.springframework.stereotype.Service;
@@ -13,11 +14,13 @@ public class MessageService {
 
     @Inject
     private MessageRepository messageRepository;
+    @Inject
+    private UserService userService;
 
     private java.text.SimpleDateFormat sdf =
             new java.text.SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
 
-    public List<Message> getMessages(String type, Long id) {
+    public List<Message> getMessages(String type, String id) {
         if("to".equals(type)) {
             return messageRepository.findAllByToId(id);
         }
@@ -28,10 +31,14 @@ public class MessageService {
             return null;
     }
 
-    public void sendMessage(Message message) {
+    public void sendMessage(MessageDTO message) {
         Date dt = new java.util.Date();
-        message.setDate(sdf.format(dt));
-        messageRepository.save(message);
+        Message messageObj = new Message();
+        messageObj.setDate(sdf.format(dt));
+        messageObj.setFrom(userService.getUser(message.getFrom()));
+        messageObj.setTo(userService.getUser(message.getTo()));
+        messageObj.setMessage(message.getMessage());
+        messageRepository.save(messageObj);
     }
 
 

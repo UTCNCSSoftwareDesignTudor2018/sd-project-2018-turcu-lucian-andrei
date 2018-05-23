@@ -1,25 +1,26 @@
 package com.utcn.medpat.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Lucian on 5/20/2018.
  */
 
-public class User {
-    private String id;
-
+public class User implements Serializable {
+    private String username;
     private String password;
     private String userType;
     private Long personId;
 
     public User(String username, String password, String userType, Long personId) {
-        this.id = username;
+        this.username = username;
         this.password = password;
         this.userType = userType;
         this.personId = personId;
     }
 
     private User(final Builder builder) {
-        this.id = builder.id;
+        this.username = builder.id;
         this.password = builder.password;
         this.userType = builder.userType;
         this.personId = builder.personId;
@@ -28,11 +29,11 @@ public class User {
     public User() {};
 
     public String getUsername() {
-        return id;
+        return username;
     }
 
     public void setUsername(String username) {
-        this.id = username;
+        this.username = username;
     }
 
     public String getPassword() {

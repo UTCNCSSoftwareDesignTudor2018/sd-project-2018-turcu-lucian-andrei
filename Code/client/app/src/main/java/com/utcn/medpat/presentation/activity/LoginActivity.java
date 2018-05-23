@@ -1,10 +1,10 @@
-package com.utcn.medpat.presentation;
+package com.utcn.medpat.presentation.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
 
     private User currentUser;
-    LoginService loginService;
+    private LoginService loginService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,15 +58,27 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 currentUser = response.body();
-                Toast.makeText(LoginActivity.this, currentUser.getPersonId().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
+                if(currentUser != null) {
+                    openMainMenu(currentUser);
+                } else {
+                    Toast.makeText(LoginActivity.this, "Wrong ID or password!", Toast.LENGTH_SHORT).show();
+                    Log.e("LOGIN ERROR", "Bad credentials");
+                }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Error occured on login.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Wrong ID or password!", Toast.LENGTH_SHORT).show();
                 Log.e("LOGIN ERROR", t.getMessage());
             }
         });
 
+    }
+
+    void openMainMenu(User user) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("User", user);
+        startActivity(intent);
     }
 }
