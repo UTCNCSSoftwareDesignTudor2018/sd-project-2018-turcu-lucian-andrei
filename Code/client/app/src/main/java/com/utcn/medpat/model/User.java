@@ -19,13 +19,6 @@ public class User implements Serializable {
         this.personId = personId;
     }
 
-    private User(final Builder builder) {
-        this.username = builder.id;
-        this.password = builder.password;
-        this.userType = builder.userType;
-        this.personId = builder.personId;
-    }
-
     public User() {};
 
     public String getUsername() {
@@ -62,35 +55,5 @@ public class User implements Serializable {
 
     public String toString() {
         return this.getUsername();
-    }
-
-    public static class Builder {
-        private String id;
-        private String password;
-        private String userType;
-        private Long personId;
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public Builder setPassword(String password) {
-            this.password = password;
-            return this;
-        }
-
-        public Builder setUserType(String userType) {
-            this.userType = userType;
-            return this;
-        }
-
-        public Builder setPersonId(Long personId) {
-            this.personId = personId;
-            return this;
-        }
-
-        public User create() {
-            return new User(this);
-        }
     }
 }

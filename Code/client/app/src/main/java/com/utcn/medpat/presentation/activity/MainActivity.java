@@ -45,7 +45,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String SERVER_URL = "http://192.168.100.5:8080";
+    public static final String SERVER_URL = "http://192.168.43.213:8080";
     private static final String TAG = "MainActivity";
 
     private SectionsPageAdapter mSectionsPageAdapter;

@@ -23,13 +23,6 @@ public class Medication {
         this.description = description;
     }
 
-    private Medication(final Builder builder) {
-        this.id = builder.id;
-        this.name = builder.name;
-        this.manufacturer = builder.manufacturer;
-        this.description = builder.description;
-    }
-
     public Long getId() {
         return id;
     }
@@ -56,36 +49,5 @@ public class Medication {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    static class Builder {
-        private Long id;
-        private String name;
-        private String manufacturer;
-        private String description;
-
-        public Builder setId(Long id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder setName(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder setManufacturer(String manufacturer) {
-            this.manufacturer = manufacturer;
-            return this;
-        }
-
-        public Builder setDescription(String description) {
-            this.description = description;
-            return this;
-        }
-
-        public Medication create() {
-            return new Medication(this);
-        }
     }
 }

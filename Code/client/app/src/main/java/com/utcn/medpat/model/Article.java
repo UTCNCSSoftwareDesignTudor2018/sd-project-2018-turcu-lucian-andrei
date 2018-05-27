@@ -26,14 +26,6 @@ public class Article {
         this.creationDate = creationDate;
     }
 
-    public Article(final Builder builder) {
-        this.id = builder.id;
-        this.author = builder.author;
-        this.title = builder.title;
-        this.body = builder.body;
-        this.creationDate = builder.creationDate;
-    }
-
     public Long getId() {
         return id;
     }
@@ -70,40 +62,4 @@ public class Article {
         this.creationDate = creationDate;
     }
 
-    static class Builder {
-        private Long id;
-        private Medic author;
-        private String title;
-        private String body;
-        private String creationDate;
-
-        public Builder setId(Long id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder setAuthor(Medic author) {
-            this.author = author;
-            return this;
-        }
-
-        public Builder setTitle(String title) {
-            this.title = title;
-            return this;
-        }
-
-        public Builder setBody(String body) {
-            this.body = body;
-            return this;
-        }
-
-        public Builder setCreationDate(String creationDate) {
-            this.creationDate = creationDate;
-            return this;
-        }
-
-        private Article create() {
-            return new Article(this);
-        }
-    }
 }

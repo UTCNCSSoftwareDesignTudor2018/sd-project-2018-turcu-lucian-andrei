@@ -44,6 +44,7 @@ public class RequestController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public User login(@RequestBody String loginCredentials) {
+        System.out.println("Received login request: "+loginCredentials);
         Gson gson = new Gson();
         LoginCredentials loginObj = gson.fromJson(loginCredentials, LoginCredentials.class);
 
