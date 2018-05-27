@@ -62,4 +62,8 @@ public class AppointmentService {
         }
     }
 
+    public void removeAppointment(Long appointmentId) {
+        appointmentRepository.deleteById(appointmentId);
+    }
+
 }

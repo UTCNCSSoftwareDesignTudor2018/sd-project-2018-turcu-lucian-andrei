@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".presentation.activity.LoginActivity">
@@ -30,6 +30,14 @@
         <activity
             android:name=".presentation.activity.SendMessageActivity"
             android:label="@string/title_activity_send_message"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".presentation.activity.ViewPrescriptionActivity"
+            android:label="@string/title_activity_view_prescription"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".presentation.activity.AddPrescriptionActivity"
+            android:label="@string/title_activity_add_prescription"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

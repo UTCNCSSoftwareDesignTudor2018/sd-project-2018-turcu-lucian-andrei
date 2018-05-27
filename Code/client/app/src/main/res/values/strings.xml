@@ -19,5 +19,7 @@
     <string name="title_activity_add_appointment">AddAppointmentActivity</string>
     <string name="action_set">Set</string>
     <string name="title_activity_send_message">SendMessageActivity</string>
+    <string name="title_activity_view_prescription">ViewPrescriptionActivity</string>
+    <string name="title_activity_add_prescription">AddPrescriptionActivity</string>
 
 </resources>

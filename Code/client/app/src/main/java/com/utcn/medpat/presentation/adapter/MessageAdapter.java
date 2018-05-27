@@ -34,15 +34,15 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.single_message, null);
+            v = vi.inflate(R.layout.single_list_item, null);
         }
 
         Message m = getItem(position);
 
         if (m != null) {
-            TextView tt1 = (TextView) v.findViewById(R.id.from);
-            TextView tt2 = (TextView) v.findViewById(R.id.date);
-            TextView tt3 = (TextView) v.findViewById(R.id.message);
+            TextView tt1 = (TextView) v.findViewById(R.id.mainField);
+            TextView tt2 = (TextView) v.findViewById(R.id.subfield1);
+            TextView tt3 = (TextView) v.findViewById(R.id.subfield2);
 
             if (tt1 != null) {
                 tt1.setText(String.valueOf(m.getFrom().getUsername()));

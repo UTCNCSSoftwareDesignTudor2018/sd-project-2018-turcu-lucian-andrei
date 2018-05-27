@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context="com.utcn.medpat.presentation.activity.AddAppointmentActivity"
+    tools:showIn="@layout/activity_add_appointment">
+
+    <TextView
+        android:id="@+id/medicText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="150dp"
+        android:text="Choose a medic:"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent2"
+        android:textSize="24sp" />
+
+    <Spinner
+        android:id="@+id/medicSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:id="@+id/day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="100dp"
+        android:text="1/1/1"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/buttonSetDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:drawableTint="@color/colorAccent2"
+        android:onClick="showDatePickerDialog"
+        android:text="Set Day"
+        android:textColor="@color/colorAccent2"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/hour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="100dp"
+        android:text="00:00"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/buttonSetHour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:drawableTint="@color/colorAccent2"
+        android:onClick="showTimePickerDialog"
+        android:text="Set Hour"
+        android:textColor="@color/colorAccent2"
+        android:textSize="24sp" />
+
+</LinearLayout>

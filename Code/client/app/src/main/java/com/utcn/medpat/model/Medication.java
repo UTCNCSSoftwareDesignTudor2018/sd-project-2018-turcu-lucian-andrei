@@ -1,10 +1,12 @@
 package com.utcn.medpat.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Lucian on 5/21/2018.
  */
 
-public class Medication {
+public class Medication implements Serializable{
     private Long id;
     private String name;
     private String manufacturer;
@@ -49,5 +51,10 @@ public class Medication {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return name+", "+manufacturer;
     }
 }

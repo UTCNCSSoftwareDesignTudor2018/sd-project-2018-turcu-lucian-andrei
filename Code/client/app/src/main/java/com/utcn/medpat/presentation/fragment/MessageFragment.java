@@ -60,10 +60,6 @@ public class MessageFragment extends Fragment {
     }
 
     private void updateList(ListView listView){
-        final ProgressDialog mProgressDialog = new ProgressDialog(getContext());
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setMessage("Loading...");
-        mProgressDialog.show();
         Retrofit retrofit = new Retrofit.Builder().
                 baseUrl(MainActivity.SERVER_URL).
                 addConverterFactory(GsonConverterFactory.create()).
@@ -76,9 +72,6 @@ public class MessageFragment extends Fragment {
         messageCall.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
-                if (mProgressDialog.isShowing())
-                    mProgressDialog.dismiss();
-
                 messageList = response.body();
                 Log.i("MESSAGES", "Size: "+messageList.size());
 
@@ -88,9 +81,8 @@ public class MessageFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Message>> call, Throwable t) {
-                if (mProgressDialog.isShowing())
-                    mProgressDialog.dismiss();
                 Log.e("MESSAGES", t.getMessage());
+                swipeLayout.setRefreshing(false);
             }
         });
 

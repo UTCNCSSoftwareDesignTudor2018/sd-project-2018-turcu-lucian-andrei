@@ -47,4 +47,8 @@ public class PrescriptionService {
         prescription.setCreationDate(sdf.format(dt));
         prescriptionRepository.save(prescription);
     }
+
+    public void deletePrescription(Long prescriptionId) {
+        prescriptionRepository.deleteById(prescriptionId);
+    }
 }

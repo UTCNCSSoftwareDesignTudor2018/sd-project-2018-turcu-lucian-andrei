@@ -128,6 +128,13 @@ public class RequestController {
         return false;
     }
 
+    @RequestMapping(value="/deleteAppointment", method = RequestMethod.GET)
+    public void deleteAppointment(@RequestParam Long appointmentId) {
+        if(appointmentId != null) {
+            appointmentService.removeAppointment(appointmentId);
+        }
+    }
+
     @RequestMapping(value="/getDoctorAppointments", method = RequestMethod.GET)
     public List<Appointment> getDoctorAppointments(@RequestParam Long doctorId) {
         return appointmentService.getAppointments(true, doctorId);
@@ -166,8 +173,8 @@ public class RequestController {
      * Prescription methods
      */
     @RequestMapping(value="/getPatientPrescriptions", method = RequestMethod.GET)
-    public List<Prescription> getPatientPrescriptions(@RequestParam Long pacientId) {
-        return prescriptionService.getPatientPrescriptions(pacientId);
+    public List<Prescription> getPatientPrescriptions(@RequestParam Long patientId) {
+        return prescriptionService.getPatientPrescriptions(patientId);
     }
 
     @RequestMapping(value="/getDoctorPrescriptions", method = RequestMethod.GET)
@@ -183,6 +190,19 @@ public class RequestController {
         if(prescriptionObj != null) {
             prescriptionService.prescribe(prescriptionObj);
         }
+    }
+
+    @RequestMapping(value="/deletePrescription", method = RequestMethod.GET)
+    public void deletePrescription(@RequestParam Long prescriptionId) {
+        prescriptionService.deletePrescription(prescriptionId);
+    }
+
+    /**
+     * Medication methods
+     */
+    @RequestMapping(value="/getMedications", method = RequestMethod.GET)
+    public List<Medication> getMedications() {
+        return medicationService.getMedications();
     }
 
 }

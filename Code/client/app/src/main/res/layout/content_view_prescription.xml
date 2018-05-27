@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.utcn.medpat.presentation.activity.ViewPrescriptionActivity"
+    tools:showIn="@layout/activity_view_prescription"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+
+    <TextView
+        android:id="@+id/prescribedBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prescribed by: "
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/prescribedFor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="For patient: "
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/prescribedAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date: "
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/forDisease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Disease: "
+        android:textSize="24sp"
+        />
+
+    <ListView
+        android:id="@+id/medList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:textSize="24sp"/>
+
+</LinearLayout>

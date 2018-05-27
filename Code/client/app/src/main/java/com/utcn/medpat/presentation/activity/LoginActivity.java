@@ -1,11 +1,14 @@
 package com.utcn.medpat.presentation.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,17 +23,20 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
     private EditText username;
     private EditText password;
     private User currentUser;
     private LoginService loginService;
+    private Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
+
 
         //Retrofit initialization
         Retrofit.Builder builder = new Retrofit.Builder()
@@ -41,13 +47,22 @@ public class LoginActivity extends AppCompatActivity {
         //Service creation
         loginService = retrofit.create(LoginService.class);
 
+        username = findViewById(R.id.username_input);
+        password = findViewById(R.id.password_input);
+        loginButton = findViewById(R.id.login_button);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                doLogin();
+            }
+        });
     }
 
-    void doLogin(View view) {
+    void doLogin() {
 
         LoginCredentials loginCredentials = new LoginCredentials.Builder()
-                .setUsername(((EditText) findViewById(R.id.username_input)).getText().toString())
-                .setPassword(((EditText) findViewById(R.id.password_input)).getText().toString())
+                .setUsername(username.getText().toString())
+                .setPassword(password.getText().toString())
                 .create();
         Log.i("CREDENTIALS", loginCredentials.getUsername()+" "+loginCredentials.getPassword());
 

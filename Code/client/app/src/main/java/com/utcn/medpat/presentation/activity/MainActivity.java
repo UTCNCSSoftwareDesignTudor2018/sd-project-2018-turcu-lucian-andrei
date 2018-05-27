@@ -45,7 +45,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String SERVER_URL = "http://192.168.43.213:8080";
+    //public static final String SERVER_URL = "http://192.168.43.213:8080"; //laptop
+    public static final String SERVER_URL = "http://192.168.100.5:8080"; //pc
+
     private static final String TAG = "MainActivity";
 
     private SectionsPageAdapter mSectionsPageAdapter;
@@ -88,7 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
         PrescriptionFragment pFrag = new PrescriptionFragment();
         pFrag.setCurrentPerson(currentMedic, currentPatient);
+        pFrag.setCurrentUser(currentUser);
         adapter.addFragment(pFrag, "Prescriptions");
+
         viewPager.setAdapter(adapter);
     }
 
@@ -136,18 +140,30 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void addAppointment(View view) {
-        Intent intent = new Intent(view.getContext(), AddAppointmentActivity.class);
-        intent.putExtra("User", currentUser);
-        if(currentMedic != null)
-            intent.putExtra("Type", currentMedic);
-        else if(currentPatient != null)
-            intent.putExtra("Type", currentPatient);
-        startActivity(intent);
+    public void manageAppointments(View view) {
+        if(currentUser.getUserType().equals("patient"))
+        {
+            Intent intent = new Intent(view.getContext(), AddAppointmentActivity.class);
+            intent.putExtra("User", currentUser);
+            if(currentMedic != null)
+                intent.putExtra("Type", currentMedic);
+            else if(currentPatient != null)
+                intent.putExtra("Type", currentPatient);
+            startActivity(intent);
+        } else if(currentUser.getUserType().equals("doctor")) {
+            //do nuffin'
+        }
     }
 
     public void sendMessage(View view) {
         Intent intent = new Intent(view.getContext(), SendMessageActivity.class);
+        intent.putExtra("User", currentUser);
+        startActivity(intent);
+    }
+
+    public void createPrescription(View view) {
+        Intent intent = new Intent(view.getContext(), AddPrescriptionActivity.class);
+        intent.putExtra("Medic", currentMedic);
         intent.putExtra("User", currentUser);
         startActivity(intent);
     }

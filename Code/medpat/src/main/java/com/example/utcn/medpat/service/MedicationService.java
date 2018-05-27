@@ -5,6 +5,7 @@ import com.example.utcn.medpat.persistence.repository.MedicationRepository;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class MedicationService {
@@ -14,5 +15,8 @@ public class MedicationService {
 
     public Medication getMedication(Long id) {
         return medicationRepository.findAllById(id);
+    }
+    public List<Medication> getMedications() {
+        return medicationRepository.findAll();
     }
 }

@@ -1,5 +1,6 @@
 package com.utcn.medpat.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by Lucian on 5/21/2018.
  */
 
-public class Prescription {
+public class Prescription implements Serializable{
 
     private Long id;
     private Medic medic;

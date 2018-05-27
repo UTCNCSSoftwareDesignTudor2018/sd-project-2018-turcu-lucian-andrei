@@ -8,21 +8,21 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.utcn.medpat.R;
-import com.utcn.medpat.model.Prescription;
+import com.utcn.medpat.model.Medication;
 
 import java.util.List;
 
 /**
- * Created by Lucian on 5/22/2018.
+ * Created by Lucian on 5/27/2018.
  */
 
-public class PrescriptionPatientAdapter extends ArrayAdapter<Prescription> {
+public class MedicationAdapter extends ArrayAdapter<Medication> {
 
-    public PrescriptionPatientAdapter(Context context, int textViewResourceId) {
+    public MedicationAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
 
-    public PrescriptionPatientAdapter(Context context, int resource, List<Prescription> items) {
+    public MedicationAdapter(Context context, int resource, List<Medication> items) {
         super(context, resource, items);
     }
 
@@ -37,23 +37,23 @@ public class PrescriptionPatientAdapter extends ArrayAdapter<Prescription> {
             v = vi.inflate(R.layout.single_list_item, null);
         }
 
-        Prescription p = getItem(position);
+        Medication a = getItem(position);
 
-        if (p != null) {
+        if (a != null) {
             TextView tt1 = (TextView) v.findViewById(R.id.mainField);
             TextView tt2 = (TextView) v.findViewById(R.id.subfield1);
             TextView tt3 = (TextView) v.findViewById(R.id.subfield2);
 
             if (tt1 != null) {
-                tt1.setText(String.valueOf(p.getPatient().getName()));
+                tt1.setText(String.valueOf(a.getName()));
             }
 
             if (tt2 != null) {
-                tt2.setText(p.getCreationDate());
+                tt2.setText(a.getManufacturer());
             }
 
             if (tt3 != null) {
-                tt3.setText(p.getDisease());
+                tt3.setText(a.getDescription());
             }
         }
 

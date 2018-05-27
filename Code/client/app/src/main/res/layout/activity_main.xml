@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.utcn.medpat.presentation.activity.MainActivity">
+    tools:context="com.utcn.medpat.presentation.activity.MainActivity"
+    android:background="@color/background">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -21,10 +22,8 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_weight="1"
             android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="@string/app_name">
-
         </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout

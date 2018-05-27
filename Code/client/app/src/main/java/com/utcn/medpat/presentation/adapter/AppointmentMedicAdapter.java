@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.utcn.medpat.R;
 import com.utcn.medpat.model.Appointment;
-import com.utcn.medpat.model.Message;
 
 import java.util.List;
 
@@ -35,15 +34,15 @@ public class AppointmentMedicAdapter extends ArrayAdapter<Appointment> {
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.single_message, null);
+            v = vi.inflate(R.layout.single_list_item, null);
         }
 
         Appointment a = getItem(position);
 
         if (a != null) {
-            TextView tt1 = (TextView) v.findViewById(R.id.from);
-            TextView tt2 = (TextView) v.findViewById(R.id.date);
-            TextView tt3 = (TextView) v.findViewById(R.id.message);
+            TextView tt1 = (TextView) v.findViewById(R.id.mainField);
+            TextView tt2 = (TextView) v.findViewById(R.id.subfield1);
+            TextView tt3 = (TextView) v.findViewById(R.id.subfield2);
 
             if (tt1 != null) {
                 tt1.setText(String.valueOf(a.getMedic().getName()));

@@ -25,4 +25,7 @@ public interface AppointmentService {
 
     @POST("/makeAppointment")
     Call<Boolean> makeAppointment(@Body AppointmentDTO appointment);
+
+    @GET("/deleteAppointment")
+    Call<Void> deleteAppointment(@Query("appointmentId") Long appointmentId);
 }
