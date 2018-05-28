@@ -5,10 +5,9 @@
 # Design Patterns: 
      Facade - A single controller class in the communication layer.
      More implemented by Spring in the background.
-     TODO - more DPs in the client app.
+     Builder - DTO classes in the client implement an inner Builder class.
                  
 # Relationships: 
-     Article -> Author: ManyToOne
      Message -> User: ManyToOne
      Prescription -> Medication: OneToMany
      Other OneToOne relationships between various classes.
@@ -16,4 +15,5 @@
 # Frameworks: Spring Boot
 # Maven
 # Unit tests - TODO
-# Input validation - TODO in client app.
+# Input validation
+    Done by the Android UI and the checks in the client and server implementations.

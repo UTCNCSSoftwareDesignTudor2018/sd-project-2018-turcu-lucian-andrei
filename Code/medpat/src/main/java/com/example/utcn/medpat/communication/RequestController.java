@@ -25,9 +25,6 @@ public class RequestController {
     private AppointmentService appointmentService;
 
     @Inject
-    private ArticleService articleService;
-
-    @Inject
     private MedicationService medicationService;
 
     @Inject
@@ -143,30 +140,6 @@ public class RequestController {
     @RequestMapping(value="/getPatientAppointments", method = RequestMethod.GET)
     public List<Appointment> getPatientAppointments(@RequestParam Long patientId) {
         return appointmentService.getAppointments(false, patientId);
-    }
-
-
-    /**
-     * Article methods
-     */
-    @RequestMapping(value="/postArticle", method = RequestMethod.POST)
-    public void postArticle(@RequestBody String article) {
-        Gson gson = new Gson();
-        Article articleObj = gson.fromJson(article, Article.class);
-
-        if(articleObj != null) {
-            articleService.postArticle(articleObj);
-        }
-    }
-
-    @RequestMapping(value="/getArticles", method = RequestMethod.GET)
-    public List<Article> getArticles() {
-        return articleService.getArticles();
-    }
-
-    @RequestMapping(value="/getArticle", method = RequestMethod.GET)
-    public Article getArticle(@RequestParam String title) {
-        return articleService.getArticleByTitle(title);
     }
 
     /**
