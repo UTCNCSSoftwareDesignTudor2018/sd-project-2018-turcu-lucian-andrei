@@ -14,6 +14,6 @@
                
 # Frameworks: Spring Boot
 # Maven
-# Unit tests - TODO
+# Unit tests - for login and makeAppointment
 # Input validation
     Done by the Android UI and the checks in the client and server implementations.
